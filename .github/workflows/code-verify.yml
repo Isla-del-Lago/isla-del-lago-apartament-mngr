@@ -6,7 +6,7 @@ on:
 
 env:
   java_version: 11
-  sonar_project_key: Isla-del-Lago_isla-del-lago-user-mngr
+  sonar_project_key: Isla-del-Lago_isla-del-lago-apartment-mngr
   current_branch: ${GITHUB_REF#refs/heads/}
 
 jobs:
