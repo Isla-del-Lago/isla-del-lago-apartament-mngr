@@ -17,13 +17,27 @@ public class GlobalExceptionHandler {
             UserNotFoundException ex) {
         log.error("User with email: {} not found", ex.getEmail());
 
+        return buildErrorResponse(ErrorCodeEnum.L102, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ApartmentNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleApartmentNotFound(
+            ApartmentNotFoundException ex) {
+        log.error("Apartment with id: {} not found",
+                ex.getApartmentId());
+
+        return buildErrorResponse(ErrorCodeEnum.L200, HttpStatus.NOT_FOUND);
+    }
+
+    private ResponseEntity<ErrorResponseDTO> buildErrorResponse(
+            ErrorCodeEnum errorCodeEnum, HttpStatus httpStatus) {
         final ErrorResponseDTO errorResponseDTO = ErrorResponseDTO.builder()
-                .error(ErrorCodeEnum.L102.getErrorMessage())
-                .errorCode(ErrorCodeEnum.L102.getErrorCode())
+                .error(errorCodeEnum.getErrorMessage())
+                .errorCode(errorCodeEnum.getErrorCode())
                 .build();
 
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(httpStatus)
                 .body(errorResponseDTO);
     }
 }

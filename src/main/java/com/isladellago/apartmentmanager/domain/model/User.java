@@ -1,7 +1,9 @@
 package com.isladellago.apartmentmanager.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +42,8 @@ public final class User implements UserDetails {
     @JsonIgnore
     private final Date creationDate = new Date();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_id", nullable = false)
     private Apartment apartment;
 
