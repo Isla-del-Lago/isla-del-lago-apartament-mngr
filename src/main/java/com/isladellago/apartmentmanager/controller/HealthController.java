@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(PathUtils.BASE_PATH)
-@CrossOrigin("*")
+@CrossOrigin("*") //NOSONAR
 public class HealthController {
 
     @GetMapping(PathUtils.HEALTH)
