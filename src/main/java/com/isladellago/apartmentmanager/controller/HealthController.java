@@ -1,5 +1,6 @@
 package com.isladellago.apartmentmanager.controller;
 
+import com.isladellago.apartmentmanager.util.LogUtils;
 import com.isladellago.apartmentmanager.util.PathUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class HealthController {
 
-    @GetMapping("/health")
+    @GetMapping(PathUtils.HEALTH)
     public final ResponseEntity<String> health() {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Service is healthy");
+                .body(LogUtils.HEALTH_LOG);
     }
 }

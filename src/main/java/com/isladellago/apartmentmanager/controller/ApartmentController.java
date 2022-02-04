@@ -5,6 +5,7 @@ import com.isladellago.apartmentmanager.domain.model.Apartment;
 import com.isladellago.apartmentmanager.service.ApartmentService;
 import com.isladellago.apartmentmanager.util.CustomHttpHeaders;
 import com.isladellago.apartmentmanager.util.PathUtils;
+import com.isladellago.apartmentmanager.util.RequestParamUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
@@ -23,11 +24,11 @@ public class ApartmentController {
 
     private ApartmentService apartmentService;
 
-    @GetMapping("/apartmentId/{apartmentId}")
+    @GetMapping(PathUtils.APARTMENT_BY_ID)
     public final ResponseEntity<ApartmentResponseDTO> getApartmentById(
             @RequestHeader(CustomHttpHeaders.UUID_HEADER) UUID uuid,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,
-            @PathVariable("apartmentId") String apartmentId) {
+            @PathVariable(RequestParamUtils.APARTMENT_ID) String apartmentId) {
         log.info("[Get apartment by id controller] Apartment id: {}, uuid: {}, token: {}",
                 apartmentId, uuid, authToken);
 

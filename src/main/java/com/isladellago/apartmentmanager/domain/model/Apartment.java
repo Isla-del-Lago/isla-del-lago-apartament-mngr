@@ -1,10 +1,7 @@
 package com.isladellago.apartmentmanager.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Getter
+@Builder
 public final class Apartment {
 
     @Id
@@ -22,6 +20,6 @@ public final class Apartment {
     private String apartmentId;
 
     @JsonManagedReference
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "apartment")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "apartment")
     private List<User> users;
 }

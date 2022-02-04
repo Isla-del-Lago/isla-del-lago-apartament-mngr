@@ -20,7 +20,7 @@ public class ApartmentServiceImpl implements ApartmentService {
     @Override
     public Apartment getApartmentById(UUID uuid, String apartmentId) {
         log.info("[Get apartment by id service] Apartment id: {}, uuid: {}",
-                uuid, apartmentId);
+                apartmentId, uuid);
 
         return apartmentRepository
                 .findById(apartmentId)
